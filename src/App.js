@@ -1,15 +1,17 @@
 import React from 'react'
 import Button from './components/like'
 import All from './components/body'
+import Useless from './components/error'
+import CommentSection from './components/comment'
+import { Switch, Route } from 'react-router-dom';
+
 class App extends React.Component {
     constructor(){
         super();
+
         this.state = {
-            likeOrDislike : "like"
-        }
-    }
-    render() {
-        let artist = [{
+
+            artist:[{
             name: "J Hus",
             img: "",
             genre: "Grime",
@@ -57,37 +59,48 @@ class App extends React.Component {
             intro: " ",
             song: "3AM",
             album: ["AJ Tracey", "2019"]
-        }
-    ]
+        }]
 
-        
-  
+        }
+
+    }
+     
+    
+    render(){
       return (
           <main>
-              <h1>Hello World!</h1>
-              <Button 
-              like = {this.state.likeOrDislike}
-              clicked = {()=>{this.state.likeOrDislike = "Dislike"}}
-              />
+              <section >
+                  <Switch>
+                      <Route exact path = "/" render={()=><h1>Hello World!</h1> } />
+                      <Route path="/comments" component={CommentSection} />
+                      <Route component={Useless}/>
+                  </Switch>
+              </section>
+              
+              <Button ></Button>
               <div id = "container">
                   <div id ="first">
               <p>Recommended Artists:</p>
               <ul>
-                {artist.map((item, idx) => {
+                {this.state.artist.map((item, idx) => {
+                    
                 return <li key = {idx}>{item.name}</li>})} 
               </ul>
               </div>
               <div id = "second">
               <p id = "second">Recommended Songs:</p>
               <ul>
-                {artist.map((item, idx) => {
+                {this.state.artist.map((item, idx) => {
                 return <li key={idx}>{item.song}</li>})} 
               </ul>
               </div>
               </div>
+
+              <CommentSection></CommentSection>
+
               <h1>Full Recommendation</h1>
               
-              {artist.map((item, idx)=> {
+              {this.state.artist.map((item, idx)=> {
                   return (
                       <All key = {idx}
                       name= {item.name} 
@@ -96,16 +109,14 @@ class App extends React.Component {
                       album= {item.album} >
                     
                     </All>
-              )
-              })}
-               {/* <h3>Artist: {artist[0].name}</h3>
-              <h3>Genre: {artist[0].genre}</h3>
-              <h3>Song: {artist[0].song}</h3>
-              <h3>Album: {artist[0].album[0]}, Released Year:{artist[0].album[1]}</h3> */}
-          </main>
-      )
-    }
-  }
+                    )
+                })
+              } 
+            </main>
+        )
+    }       
+    
+}
 export default App
 
 
