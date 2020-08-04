@@ -1,6 +1,13 @@
 import React from 'react'
 import Button from './components/like'
+import All from './components/body'
 class App extends React.Component {
+    constructor(){
+        super();
+        this.state = {
+            likeOrDislike : "like"
+        }
+    }
     render() {
         let artist = [{
             name: "J Hus",
@@ -52,14 +59,16 @@ class App extends React.Component {
             album: ["AJ Tracey", "2019"]
         }
     ]
+
         
-    // {for (art of artist) {
-    //     console.log(artist[art])
-    // }}
+  
       return (
           <main>
               <h1>Hello World!</h1>
-              <Button/>
+              <Button 
+              like = {this.state.likeOrDislike}
+              clicked = {()=>{this.state.likeOrDislike = "Dislike"}}
+              />
               <div id = "container">
                   <div id ="first">
               <p>Recommended Artists:</p>
@@ -99,17 +108,4 @@ class App extends React.Component {
   }
 export default App
 
-function All (props){
-    return (
-        <div>
-        <h3>{props.name}</h3>
-        <h3>{props.genre}</h3>
-        <h3>{props.song}</h3>
-        <ul>{props.album.map((item, idx) =>{
-            return<li key ={idx}>{item}</li>
-        })}</ul>
-        
-        <hr></hr>
-        </div>
-    )
-}
+
