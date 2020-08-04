@@ -1,0 +1,10 @@
+body{
+    background-color: pink;
+}
+
+#container {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-template-rows: auto;
+
+}
