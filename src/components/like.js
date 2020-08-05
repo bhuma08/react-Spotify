@@ -6,10 +6,23 @@ class Button extends Component {
         this.state = { 
             likeOrDislike: true,
          }
+        this.opinion = this.opinion.bind(this);
     }
     opinion = () => {
         this.setState(prevState => ({ likeOrDislike: !prevState.likeOrDislike}))
     }
+
+    // componentDidMount(){
+    //     console.log("component did mount");
+    // }
+
+    // componentDidUpdate(prevProps, prevState){
+    //     console.log("component did update!", prevProps, prevState)
+    // }
+
+    // componentWillUnmount(){
+    //     console.log("component will unmount")
+    // }
 
     render() {
         return (
