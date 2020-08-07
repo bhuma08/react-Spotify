@@ -8,6 +8,7 @@ class Button extends Component {
          }
         this.opinion = this.opinion.bind(this);
     }
+    
     opinion = () => {
         this.setState(prevState => ({ likeOrDislike: !prevState.likeOrDislike}))
     }

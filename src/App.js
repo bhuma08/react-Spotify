@@ -4,7 +4,8 @@ import All from './components/body'
 import Useless from './components/error'
 import CommentSection from './components/comment'
 import { Switch, Route } from 'react-router-dom';
-import { useArtist } from 'react-spotify-api';
+import Spotify from './components/spoitfy'
+// import { useArtist } from 'react-spotify-api';
 
 class App extends React.Component {
     constructor(){
@@ -79,80 +80,93 @@ class App extends React.Component {
     render(){
       return (
           <main>
-            <ExampleHooks id={"0cGUm45nv7Z6M6qdXYQGTX"}/>
-            <ExampleHooks id={"5pKCCKE2ajJHZ9KAiaK11H"} />
-            <ExampleHooks id={"2a0uxJgbvvIRI4GX8pYfcr"} />
-            <ExampleHooks id={"3wcj11K77LjEY1PkEazffa"} />
-      
-            {/* <button onClick = {()=> this.setState({counter: this.state.counter+1})}>{this.state.counter}</button>
+            <button onClick = {()=> this.setState({counter: this.state.counter+1})}>{this.state.counter}</button>
               <section >
                   <Switch>
-                      <Route exact path = "/" render={()=><h1>Hello World!</h1> } />
+                      <Route exact path = "/" render={()=><h1>Hello World!<Button ></Button></h1> } />
+
+                      <Route path = "/recommend" 
+                      render={()=>
+                      <div id = "container">
+                      <div id ="first">
+                      <p>Recommended Artists:</p>
+                      <ul>
+                      {this.state.artist.map((item, idx) => {
+                          return <li key = {idx}>{item.name}</li>})} 
+                      </ul>
+                      </div>
+                      <div id = "second">
+                      <p id = "second">Recommended Songs:</p>
+                      <ul>
+                     {this.state.artist.map((item, idx) => {
+                          return <li key={idx}>{item.song}</li>})} 
+                      </ul>
+                      </div>
+                      </div>
+                      }/>
+
                       <Route path="/comments" component={CommentSection} />
+
+                      <Route path="/apipractice" component={Spotify} />
+
+                      <Route path="/full" 
+                      render={()=>
+                      <div>
+                      <h1>Full Recommendation</h1>
+                      <div>{this.state.artist.map((item, idx)=> {
+                          return (
+                            <div> 
+                              <All key = {idx}
+                              name= {item.name} 
+                              genre= {item.genre}
+                              song= {item.song}
+                              album= {item.album}
+                              />
+                              <Button/>
+                        
+                            </div>
+                            )
+                        })
+                        } 
+                        </div> 
+                        </div>
+                      }/> 
+
+
                       <Route component={Useless}/>
-                  </Switch>
+                    </Switch>
+                    
+
+                    
               </section>
-              
-              <Button ></Button>
-              <div id = "container">
-                  <div id ="first">
-              <p>Recommended Artists:</p>
-              <ul>
-                {this.state.artist.map((item, idx) => {
-                    
-                return <li key = {idx}>{item.name}</li>})} 
-              </ul>
-              </div>
-              <div id = "second">
-              <p id = "second">Recommended Songs:</p>
-              <ul>
-                {this.state.artist.map((item, idx) => {
-                return <li key={idx}>{item.song}</li>})} 
-              </ul>
-              </div>
-              </div>
-
-              <CommentSection></CommentSection>
-
-              <h1>Full Recommendation</h1>
-              
-              {this.state.artist.map((item, idx)=> {
-                  return (
-                      <All key = {idx}
-                      name= {item.name} 
-                      genre= {item.genre}
-                      song= {item.song}
-                      album= {item.album} >
-                    
-                    </All>
-                    )
-                })
-              }  */}
-
             </main>
-        )
+      )
     }        
 }
 
+ {/* <ExampleHooks id={"0cGUm45nv7Z6M6qdXYQGTX"}/>
+            <ExampleHooks id={"5pKCCKE2ajJHZ9KAiaK11H"} />
+            <ExampleHooks id={"2a0uxJgbvvIRI4GX8pYfcr"} />
+            <ExampleHooks id={"3wcj11K77LjEY1PkEazffa"} /> */}
 
-function ExampleHooks(props) {
-    const { data, loading, error } = useArtist(props.id);
-    let artist = data;
+// function ExampleHooks(props) {
+//     const { data, loading, error } = useArtist(props.id);
+//     let artist = data;
 
-    console.log(artist)
+//     console.log(artist)
    
-    return artist ? (
-      <div>
-        <h1>{artist.name}</h1>
-        <ul>
-          {artist.genres.map((genre) => (
-            <li key={genre}>{genre}</li>
-          ))}
-        </ul>
-        <img src={artist.images[2].url}></img>
-      </div>
-    ) : null;
-}
+//     return artist ? (
+//       <div>
+//         <h1>{artist.name}</h1>
+//         <ul>
+//           {artist.genres.map((genre) => (
+//             <li key={genre}>{genre}</li>
+//           ))}
+//         </ul>
+//         <img src={artist.images[2].url}></img>
+//       </div>
+//     ) : null;
+// }
 
 
 export default App
