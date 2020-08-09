@@ -4,7 +4,9 @@ import All from './components/body'
 import Useless from './components/error'
 import CommentSection from './components/comment'
 import { Switch, Route } from 'react-router-dom';
-import Spotify from './components/spoitfy'
+import Spotify from './components/spoitfy';
+import FetchRandomUser from './components/apiagain'
+
 // import { useArtist } from 'react-spotify-api';
 
 class App extends React.Component {
@@ -108,6 +110,8 @@ class App extends React.Component {
                       <Route path="/comments" component={CommentSection} />
 
                       <Route path="/apipractice" component={Spotify} />
+
+                      <Route path="/apiagain" component={FetchRandomUser} />
 
                       <Route path="/full" 
                       render={()=>

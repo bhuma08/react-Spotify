@@ -6,52 +6,53 @@ class Spotify extends Component {
         
     
     this.state = {
-        data: false
+        person: " "
     }
 
     }
 
     async componentDidMount(){
-        //API
-        // let url ="https://api.randomuser.me/";
-        // let url = "https://api.spotify.com/v1/artists/37i9dQZF1DXbjiU2ByCldP"
-        // fetch(url, {
-        //     // mode: 'no-cors',
-        //     method: 'GET',
-        //     headers:{
-        //         'Accept':'application/json',
-        //         'Content-Type': 'application/json',
-        //     }
-        // }).then((result)=>{
-        //     result.json().then((resp)=>{
-        //         console.warn(resp)
-        //     })
-        // })
-
+        // API - using try, await, catch
         try {
             const response = await fetch("https://api.randomuser.me/")
             const data = await response.json();
-            console.log(data)
+            console.log(data.results[0].name.title)
+            this.setState({ person: data.results[0] })
         }catch(err){
             console.log(err)
         }
 
-    
-        // const url = "https://api.spotify.com/v1/artists/37i9dQZF1DXbjiU2ByCldP"
-        // fetch(url)
-        // .then(res => res.json())
-        // const interval = setInterval(()=>{
-        //     console.log(res)
-        // }, 1000);
-        // .catch(error)
+        //API - fetch
+    //     const url = "https://api.randomuser.me/"
+    //     fetch(url)
+    //     .then(res => res.json())
+    //     .then(
+    //         (data)=> {
+    //             this.setState({
+    //                 person: data.results[0]
+    //             })  
+    //         })
+    //     .catch(console.error())  
+
+        //API - async, await
+        // const url = "https://api.randomuser.me/";
+        // const response = await fetch(url);
+        // const data = await response.json();
+        // this.setState({ person: data.results[0]})
+
     }
 
     render() {
+       
         return (
             <div>
                 <h1>Practice</h1>
-
-
+                <div>
+                <div>Gender: {this.state.person.gender}</div>
+                <div>Email: {this.state.person.email}</div>
+                {/* <div>Name: {this.state.person.name.first} </div> */}
+                {/* <img src = {this.state.person.picture.large}  /> */}
+                </div>
             </div>
         )
     }
